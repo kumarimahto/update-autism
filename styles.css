@@ -1,0 +1,71 @@
+:root{
+	--bg:linear-gradient(180deg,#f7fbff 0%, #f0f4ff 100%);
+	--card:#ffffff;
+	--muted:#718096;
+	--accent:#2563eb;
+	--accent-2:#7c3aed;
+	--glass: rgba(255,255,255,0.7);
+}
+body{font-family: Inter, system-ui, Arial; background:var(--bg); margin:0; padding:32px}
+.container{max-width:1100px;margin:0 auto}
+.header{display:flex;flex-direction:column;align-items:center;margin-bottom:18px;gap:6px}
+.brand{font-weight:800;font-size:30px;color:#0f172a;letter-spacing:0.2px}
+.sub{color:var(--muted);font-size:13px;text-align:center}
+.grid{display:grid;grid-template-columns:460px 1fr;gap:26px;align-items:start}
+.card{background:var(--card);padding:22px;border-radius:14px;box-shadow:0 10px 30px rgba(15,23,42,0.06)}
+.form-title{font-size:20px;margin-bottom:8px}
+label{display:block;margin-bottom:8px;color:#333}
+input,select{width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid #e6edf3;background:transparent}
+button{padding:10px 14px;border-radius:10px;border:none;background:var(--accent);color:#fff;cursor:pointer;box-shadow:0 6px 18px rgba(37,99,235,0.18)}
+button.secondary{background:#0ea5a4}
+button.ghost{background:transparent;color:var(--accent);border:1px solid rgba(37,99,235,0.12)}
+button[disabled]{opacity:.6;cursor:not-allowed}
+.muted{color:var(--muted);margin-top:22px}
+
+/* Result styling */
+.results-header{display:flex;align-items:center;justify-content:space-between}
+.input-summary{background:linear-gradient(180deg,#fff,#fbfdff);padding:16px;border-radius:10px;box-shadow:0 8px 20px rgba(2,6,23,0.06)}
+.input-summary h4{margin:0 0 8px 0}
+.input-summary dl{margin:0;font-size:14px}
+.input-summary dt{font-weight:600;color:#324157}
+.input-summary dd{margin:0 0 8px 0;color:#475569}
+.pill{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:6px 10px;border-radius:999px;font-size:13px}
+.focus-list li{margin-bottom:6px}
+.goals-list li{margin-bottom:8px}
+
+/* Loader overlay */
+.overlay{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(10,11,13,0.35);display:flex;align-items:center;justify-content:center;z-index:1200}
+.loader{background:var(--card);padding:18px 24px;border-radius:12px;display:flex;gap:12px;align-items:center;box-shadow:0 12px 36px rgba(2,6,23,0.2)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--accent);animation:pop 1s infinite}
+.dot:nth-child(2){animation-delay:.12s;background:var(--accent-2)}
+.dot:nth-child(3){animation-delay:.24s}
+@keyframes pop{0%{transform:translateY(0);opacity:.6}50%{transform:translateY(-6px);opacity:1}100%{transform:translateY(0);opacity:.6}}
+
+/* Modal */
+.modal-backdrop{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(8,10,20,0.45);display:flex;align-items:center;justify-content:center;z-index:1300}
+.modal{background:linear-gradient(180deg,#fff,#fbfdff);padding:22px;border-radius:14px;box-shadow:0 18px 48px rgba(3,7,18,0.3);width:420px;text-align:center}
+.modal h3{margin:0 0 8px 0}
+.modal p{color:var(--muted);margin:0 0 16px}
+.btn-close{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:none}
+
+/* In-panel print preview area */
+#print-area{border:1px solid #eef2f7;border-radius:10px;padding:10px;max-height:520px;overflow:auto;background:#fff}
+#print-area .report-wrap{display:flex;gap:12px;align-items:flex-start}
+#print-area .summary{width:240px}
+#print-area .recommend{flex:1}
+
+/* Print stylesheet: show only the preview area when printing */
+@media print {
+	/* hide everything by default */
+	body * { visibility: hidden !important; }
+	/* show the preview area and its contents */
+	#print-area, #print-area * { visibility: visible !important; }
+	/* position the preview at the top-left and make it take full page */
+	#print-area { position: absolute !important; left: 0 !important; top: 0 !important; width: 100% !important; height: auto !important; overflow: visible !important; }
+	/* remove shadows/borders that affect printed look */
+	.card, .modal, .overlay { box-shadow: none !important; }
+}
+
+@media (max-width:900px){
+	.grid{grid-template-columns:1fr}
+}

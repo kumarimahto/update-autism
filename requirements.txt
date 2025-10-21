@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic
+httpx
+python-dotenv
+python-multipart
+reportlab
+pillow
+requests
